@@ -11,6 +11,9 @@ Log of changes:
 """
 
 
+import cPickle as pickle
+
+
 
 """  ------------------------------------------------------------
 //  Fast calculation of the cubic root.
@@ -35,3 +38,15 @@ def clearBit(int_type, offset):
     
     mask = ~(1 << offset)
     return(int_type & mask)
+
+
+
+def save_object(obj, filename):
+    with open(filename, 'wb') as output:
+        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+
+def load_object(filename):
+    with open(filename, 'rb') as input:
+        obj = pickle.load(input)
+    return obj
+
